@@ -1,12 +1,12 @@
 <?php
-require_once 'models/Article.php';
-require_once './Models/BDD.php';
+require_once '../models/Article.php';
+require_once '../Models/BDD.php';
 
 function index() {
     $dbInstance = new BDD();
     $db = $dbInstance->connect();
     $articles = readArticles($db);
-    include 'views/articles/index.php';
+    include '../views/articles/index.php';
 }
 
 function create() {
@@ -27,7 +27,7 @@ function create() {
             echo "Erreur lors de la création de l'article.";
         }
     } else {
-        include 'views/articles/create.php';
+        include '../views/articles/create.php';
     }
 }
 
@@ -35,7 +35,7 @@ function show($id) {
     $dbInstance = new BDD();
     $db = $dbInstance->connect();
     $article = readArticle($db, $id);
-    include 'views/articles/show.php';
+    include '../views/articles/show.php';
 }
 
 function edit($id) {
@@ -55,7 +55,7 @@ function edit($id) {
         }
     } else {
         $article = readArticle($db, $id);
-        include 'views/articles/edit.php';
+        include '../views/articles/edit.php';
     }
 }
 

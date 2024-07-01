@@ -11,7 +11,7 @@
 <body>
 <?php
 session_start();
-require_once 'controllers/ArticleController.php';
+require_once '../Controllers/ArticleController.php';
 
 $controller = $_GET['controller'] ?? 'article';
 $action = $_GET['action'] ?? 'index';

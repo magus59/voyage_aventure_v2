@@ -1,0 +1,105 @@
+@font-face {
+	font-family: textMeOne;
+	src: url(../assets/text-me-one/TextMeOne-Regular.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: textMeOne;
+}
+
+#title_article{
+    padding: 20px;
+    font-family: textMeOne;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    background-color: #030333;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    padding: 20px;
+    list-style-type: none;
+    margin: 10px;
+}
+
+li{
+    margin-bottom: 20px;
+}
+
+#create_article{
+    margin: 20px;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+    background: linear-gradient(to right, #0d4dd8, #021352);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#create_article:hover{
+    background: linear-gradient(to right, #0d4dd8, #0d4dd8);
+}
+
+#article{
+    background-color: #ffffff;
+    box-shadow: 5px 5px 5px rgb(212, 212, 212);
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 0 0 0 30px;
+}
+
+#article:hover{
+    background-color: #07134d;
+    color: white;
+
+}
+
+img{
+    width: 500px;
+    height: auto;
+    border-radius: 30px;
+    margin: 20px;
+}
+
+p{
+    width: 500px;
+    padding: 20px;
+    font-style: italic;
+    font-size: 20px;
+}
+
+h1{
+    padding: 20px;
+    color: #0d4dd8;
+}
+
+#edit, #suppr{
+    padding: 15px;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#edit{
+    background: linear-gradient(to right, #0ec811, #095605);
+}
+
+#suppr{
+    background: linear-gradient(to right, #c50202, #570202);
+}
+
+#edit:hover{
+    background: linear-gradient(to right, #095605, #095605);
+}
+
+#suppr:hover{
+    background: linear-gradient(to right, #570202, #570202);
+}

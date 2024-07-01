@@ -111,6 +111,6 @@ h1{
     background: linear-gradient(to right, #570202, #570202);
 }
 
-#back{
+#back:hover{
     background: linear-gradient(to right, #020a42, #020a42);
 }

@@ -1,5 +1,5 @@
 <?php
-require_once '../models/Article.php';
+require_once '../Models/Article.php';
 require_once '../Models/BDD.php';
 
 function index() {
@@ -14,19 +14,16 @@ function create() {
         $dbInstance = new BDD();
         $db = $dbInstance->connect();
 
-        // Vérification des champs obligatoires
         $titre = $_POST['titre'] ?? '';
         $contenu = $_POST['contenu'] ?? '';
         $image_url = $_POST['image_url'] ?? '';
         $categorie_id = $_POST['categorie_id'] ?? '';
 
-        // Vérifiez si les champs obligatoires sont remplis
         if (empty($titre) || empty($contenu) || empty($categorie_id)) {
             echo "Tous les champs doivent être remplis.";
             exit;
         }
 
-        // Créez le tableau de données à passer à createArticle()
         $data = [
             'titre' => $titre,
             'contenu' => $contenu,
@@ -35,7 +32,6 @@ function create() {
             'categorie_id' => $categorie_id,
         ];
 
-        // Appel de la fonction createArticle() du modèle
         if (createArticle($db, $data)) {
             header("Location: index.php?controller=article&action=index");
             exit;
@@ -58,13 +54,11 @@ function edit($id) {
     $dbInstance = new BDD();
     $db = $dbInstance->connect();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Vérification des champs obligatoires
         $titre = $_POST['titre'] ?? '';
         $contenu = $_POST['contenu'] ?? '';
         $image_url = $_POST['image_url'] ?? '';
         $categorie_id = $_POST['categorie_id'] ?? '';
 
-        // Vérifiez si les champs obligatoires sont remplis
         if (empty($titre) || empty($contenu) || empty($categorie_id)) {
             echo "Tous les champs doivent être remplis.";
             exit;
@@ -77,7 +71,6 @@ function edit($id) {
             'categorie_id' => $categorie_id,
         ];
 
-        // Appel de la fonction updateArticle() du modèle
         if (updateArticle($db, $id, $data)) {
             header("Location: index.php?controller=article&action=show&id=$id");
             exit;

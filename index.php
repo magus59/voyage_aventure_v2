@@ -9,6 +9,39 @@
     <title>Document</title>
 </head>
 <body>
-    
+<?php
+session_start();
+require_once 'controllers/ArticleController.php';
+
+$controller = $_GET['controller'] ?? 'article';
+$action = $_GET['action'] ?? 'index';
+$id = $_GET['id'] ?? null;
+
+if ($controller === 'article') {
+    switch ($action) {
+        case 'index':
+            index();
+            break;
+        case 'create':
+            create();
+            break;
+        case 'show':
+            if ($id) show($id);
+            break;
+        case 'edit':
+            if ($id) edit($id);
+            break;
+        case 'delete':
+            if ($id) delete($id);
+            break;
+        default:
+            index();
+            break;
+    }
+} else {
+    echo "Contrôleur inconnu.";
+}
+?>
+
 </body>
 </html>

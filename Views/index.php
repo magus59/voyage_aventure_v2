@@ -8,7 +8,6 @@
 </head>
 <body>
 <?php
-session_start();
 require_once '../Controllers/ArticleController.php';
 
 $controller = $_GET['controller'] ?? 'article';

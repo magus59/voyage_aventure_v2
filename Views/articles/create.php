@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <link rel="stylesheet" href="../CSS/article.css">
     <title>Créer un article</title>
 </head>
+
 <body>
     <h1>Créer un article</h1>
     <form action="index.php?controller=article&action=create" method="POST">
@@ -21,4 +24,5 @@
         <button type="submit">Créer</button>
     </form>
 </body>
+
 </html>

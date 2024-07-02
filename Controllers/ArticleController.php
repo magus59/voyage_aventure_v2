@@ -1,5 +1,5 @@
 <?php
-require_once '../models/Article.php';
+require_once '../Models/Article.php';
 require_once '../Models/BDD.php';
 
 function index() {
@@ -13,16 +13,28 @@ function create() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $dbInstance = new BDD();
         $db = $dbInstance->connect();
+
+        $titre = $_POST['titre'] ?? '';
+        $contenu = $_POST['contenu'] ?? '';
+        $image_url = $_POST['image_url'] ?? '';
+        $categorie_id = $_POST['categorie_id'] ?? '';
+
+        if (empty($titre) || empty($contenu) || empty($categorie_id)) {
+            echo "Tous les champs doivent être remplis.";
+            exit;
+        }
+
         $data = [
-            'titre' => $_POST['titre'],
-            'contenu' => $_POST['contenu'],
-            'image_url' => $_POST['image_url'],
+            'titre' => $titre,
+            'contenu' => $contenu,
+            'image_url' => $image_url,
             'date_publication' => date('Y-m-d H:i:s'),
-            'utilisateur_id' => $_SESSION['user_id'],
-            'categorie_id' => $_POST['categorie_id'],
+            'categorie_id' => $categorie_id,
         ];
+
         if (createArticle($db, $data)) {
             header("Location: index.php?controller=article&action=index");
+            exit;
         } else {
             echo "Erreur lors de la création de l'article.";
         }
@@ -42,14 +54,26 @@ function edit($id) {
     $dbInstance = new BDD();
     $db = $dbInstance->connect();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $titre = $_POST['titre'] ?? '';
+        $contenu = $_POST['contenu'] ?? '';
+        $image_url = $_POST['image_url'] ?? '';
+        $categorie_id = $_POST['categorie_id'] ?? '';
+
+        if (empty($titre) || empty($contenu) || empty($categorie_id)) {
+            echo "Tous les champs doivent être remplis.";
+            exit;
+        }
+
         $data = [
-            'titre' => $_POST['titre'],
-            'contenu' => $_POST['contenu'],
-            'image_url' => $_POST['image_url'],
-            'categorie_id' => $_POST['categorie_id'],
+            'titre' => $titre,
+            'contenu' => $contenu,
+            'image_url' => $image_url,
+            'categorie_id' => $categorie_id,
         ];
+
         if (updateArticle($db, $id, $data)) {
             header("Location: index.php?controller=article&action=show&id=$id");
+            exit;
         } else {
             echo "Erreur lors de la mise à jour de l'article.";
         }
@@ -64,6 +88,7 @@ function delete($id) {
     $db = $dbInstance->connect();
     if (deleteArticle($db, $id)) {
         header("Location: index.php?controller=article&action=index");
+        exit;
     } else {
         echo "Erreur lors de la suppression de l'article.";
     }

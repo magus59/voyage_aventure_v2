@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <link rel="stylesheet" href="../CSS/article.css">
     <title>Éditer l'article</title>
 </head>
+
 <body>
     <h1>Éditer l'article</h1>
     <form action="index.php?controller=article&action=edit&id=<?= $article['id'] ?>" method="POST">
@@ -21,4 +24,5 @@
         <button type="submit">Éditer</button>
     </form>
 </body>
+
 </html>

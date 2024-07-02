@@ -11,8 +11,17 @@ function createArticle($db, $data) {
     $query = "INSERT INTO Article (titre, contenu, image_url, date_publication, utilisateur_id, categorie_id)
               VALUES (:titre, :contenu, :image_url, :date_publication, :utilisateur_id, :categorie_id)";
     $stmt = $db->prepare($query);
-    return $stmt->execute($data);
+
+    $stmt->bindParam(':titre', $data['titre']);
+    $stmt->bindParam(':contenu', $data['contenu']);
+    $stmt->bindParam(':image_url', $data['image_url']);
+    $stmt->bindParam(':date_publication', $data['date_publication']);
+    $stmt->bindParam(':utilisateur_id', $data['utilisateur_id']);
+    $stmt->bindParam(':categorie_id', $data['categorie_id']);
+
+    return $stmt->execute();
 }
+
 
 function readArticle($db, $id) {
     $query = "SELECT * FROM Article WHERE id = ?";

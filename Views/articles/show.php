@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <link rel="stylesheet" href="../CSS/article.css">
     <title><?= $article['titre'] ?></title>
 </head>
+
 <body>
     <h1><?= $article['titre'] ?></h1>
     <p><?= $article['contenu'] ?></p>
     <img src="<?= $article['image_url'] ?>" alt="Image de l'article">
     <p>Publié le: <?= $article['date_publication'] ?></p>
     <p>
-        <a href="index.php?controller=article&action=edit&id=<?= $article['id'] ?>">Éditer</a>
-        <a href="index.php?controller=article&action=delete&id=<?= $article['id'] ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article?');">Supprimer</a>
+        <a id="edit" href="index.php?controller=article&action=edit&id=<?= $article['id'] ?>">Éditer</a>
+        <a id="suppr" href="index.php?controller=article&action=delete&id=<?= $article['id'] ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article?');">Supprimer</a>
+        <a id="back" href="../../../voy_et_av_v2/Views/index.php">Revenir aux articles</a>
     </p>
 </body>
+
 </html>

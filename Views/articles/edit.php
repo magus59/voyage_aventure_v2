@@ -22,7 +22,7 @@
         </ul>
     </nav>
     <h1>Éditer l'article</h1>
-    <form action="index.php?controller=article&action=edit&id=<?= $article['id'] ?>" method="POST">
+    <form id="form_create_articles"  action="index.php?controller=article&action=edit&id=<?= $article['id'] ?>" method="POST">
         <label for="titre">Titre:</label>
         <input type="text" id="titre" name="titre" value="<?= $article['titre'] ?>" required>
         <br>

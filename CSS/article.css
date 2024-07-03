@@ -114,3 +114,38 @@ h1{
 #back:hover{
     background: linear-gradient(to right, #020a42, #020a42);
 }
+
+#form_create_articles{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+#form_create_articles input,
+#form_create_articles button,
+#form_create_articles textarea,
+#form_create_articles label{
+    width: 90%;
+    margin: auto;
+    font-weight: bold;
+    color: rgb(3, 30, 81);
+    height: 25px;
+}
+
+#form_create_articles button{
+    border: 0;
+    background: linear-gradient(to right, #0e40c8, #020a42);
+    border-radius: 30px;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    height: auto;
+}
+
+#form_create_articles textarea{
+    height: 200px;
+}

@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="../../CSS/styles.css">
     <title>Liste des Commentaires</title>
 </head>
 <body>
+<nav>
+        <ul id="ul_nav">
+            <a href="../Accueil/index.php">
+                <li id="li_nav">Accueil</li>
+            </a>
+            <a href="../index.php">
+                <li id="li_nav">Article</li>
+            </a>
+            <a href="../commentaires/index.php">
+                <li id="li_nav">Commentaires</li>
+            </a>
+        </ul>
+    </nav>
     <h1>Liste des Commentaires</h1>
     <a href="index.php?controller=commentaire&action=create">Créer un nouveau commentaire</a>
     <table border="1">

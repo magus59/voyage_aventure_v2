@@ -1,0 +1,37 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#ul_nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color:  #464b73;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid white;
+}
+
+#li_nav{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    margin: 0;
+    padding: 20px;
+    cursor: pointer;
+}
+
+#li_nav:hover{
+    background-color:  #021e65;
+}
+
+a{
+    font-size: 16px;
+}

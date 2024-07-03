@@ -3,10 +3,24 @@
 
 <head>
     <link rel="stylesheet" href="../CSS/article.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
     <title>Éditer l'article</title>
 </head>
 
 <body>
+    <nav>
+        <ul id="ul_nav">
+            <a href="../Accueil/index.php">
+                <li id="li_nav">Accueil</li>
+            </a>
+            <a href="./index.php">
+                <li id="li_nav">Article</li>
+            </a>
+            <a href="../commentaires/index.php">
+                <li id="li_nav">Commentaires</li>
+            </a>
+        </ul>
+    </nav>
     <h1>Éditer l'article</h1>
     <form action="index.php?controller=article&action=edit&id=<?= $article['id'] ?>" method="POST">
         <label for="titre">Titre:</label>

@@ -3,10 +3,24 @@
 
 <head>
     <link rel="stylesheet" href="../CSS/article.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
     <title><?= $article['titre'] ?></title>
 </head>
 
 <body>
+    <nav>
+        <ul id="ul_nav">
+            <a href="../Accueil/index.php">
+                <li id="li_nav">Accueil</li>
+            </a>
+            <a href="./index.php">
+                <li id="li_nav">Article</li>
+            </a>
+            <a href="../commentaires/index.php">
+                <li id="li_nav">Commentaires</li>
+            </a>
+        </ul>
+    </nav>
     <h1><?= $article['titre'] ?></h1>
     <p><?= $article['contenu'] ?></p>
     <img src="<?= $article['image_url'] ?>" alt="Image de l'article">

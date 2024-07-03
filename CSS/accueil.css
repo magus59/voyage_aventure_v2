@@ -1,0 +1,31 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url(../assets/a.jpg);
+    background-size: cover;
+    box-sizing: border-box;
+    z-index: -1;
+}
+
+#p_accueil{
+    color: white;
+    background-color: rgba(255, 228, 196, 0.208);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 50px;
+    margin-top: 200px;
+}
+
+#p_accueil2{
+    color: rgb(4, 2, 87);
+    background-color: rgba(255, 228, 196, 0.349);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 50px;
+}

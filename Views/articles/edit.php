@@ -10,13 +10,13 @@
 <body>
     <nav>
         <ul id="ul_nav">
-            <a href="../Accueil/index.php">
-                <li id="li_nav">Accueil</li>
+        <a href="./Accueil/index.php">
+        <li id="li_nav">Accueil</li>
             </a>
             <a href="./index.php">
                 <li id="li_nav">Article</li>
             </a>
-            <a href="../commentaires/index.php">
+            <a href="./commentaires/index.php">
                 <li id="li_nav">Commentaires</li>
             </a>
         </ul>

@@ -1,100 +1,83 @@
 <?php
-require_once '../Models/commentaire.php';
+require_once '../Models/Commentaire.php';
 require_once '../Models/BDD.php';
 
-function index() {
-    $dbInstance = new BDD();
-    $db = $dbInstance->connect();
-    $commentaires = readCommentaires($db);
-    include '../Views/commentaires/index.php';
-}
+class CommentaireController {
+    private $commentaireModel;
 
-
-function create() {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    public function __construct() {
         $dbInstance = new BDD();
         $db = $dbInstance->connect();
+        $this->commentaireModel = new Commentaire($db);
+    }
 
-        $contenu = $_POST['contenu'] ?? '';
-        $utilisateur_id = $_POST['utilisateur_id'] ?? '';
-        $article_id = $_POST['article_id'] ?? '';
+    public function index() {
+        $commentaires = $this->commentaireModel->getAllCommentaires();
+        include '../views/commentaires/index.php';
+    }
 
-        if (empty($contenu) || empty($utilisateur_id) || empty($article_id)) {
-            echo "Tous les champs doivent être remplis.";
-            exit;
+    public function create() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [
+                'contenu' => $_POST['contenu'] ?? '',
+                'date_publication' => date('Y-m-d H:i:s'),
+                'utilisateur_id' => $_POST['utilisateur_id'] ?? '',
+                'article_id' => $_POST['article_id'] ?? '',
+            ];
+
+            if ($this->commentaireModel->createCommentaire($data)) {
+                header("Location: index.php?controller=commentaire&action=index");
+                exit;
+            } else {
+                echo "Erreur lors de la création du commentaire.";
+            }
+        } else {
+            include '../views/commentaires/create.php';
         }
+    }
 
-        $data = [
-            'contenu' => $contenu,
-            'date_publication' => date('Y-m-d H:i:s'),
-            'utilisateur_id' => $utilisateur_id,
-            'article_id' => $article_id,
-        ];
+    public function show($id) {
+        $commentaire = $this->commentaireModel->getCommentaireById($id);
+        include '../views/commentaires/show.php';
+    }
 
-        if (createCommentaire($db, $data)) {
+    public function edit($id) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [
+                'contenu' => $_POST['contenu'] ?? '',
+                'utilisateur_id' => $_POST['utilisateur_id'] ?? '',
+                'article_id' => $_POST['article_id'] ?? '',
+            ];
+
+            if ($this->commentaireModel->updateCommentaire($id, $data)) {
+                header("Location: index.php?controller=commentaire&action=show&id=$id");
+                exit;
+            } else {
+                echo "Erreur lors de la mise à jour du commentaire.";
+            }
+        } else {
+            $commentaire = $this->commentaireModel->getCommentaireById($id);
+            include '../views/commentaires/edit.php';
+        }
+    }
+
+    public function delete($id) {
+        if ($this->commentaireModel->deleteCommentaire($id)) {
             header("Location: index.php?controller=commentaire&action=index");
             exit;
         } else {
-            echo "Erreur lors de la création du commentaire.";
+            echo "Erreur lors de la suppression du commentaire.";
         }
-    } else {
-        include '../Views/commentaires/create.php';
     }
 }
 
-function show($id) {
-    $dbInstance = new BDD();
-    $db = $dbInstance->connect();
-    $commentaire = readCommentaire($db, $id);
-    include '../Views/commentaires/show.php';
-}
+$controller = new CommentaireController();
+$action = $_GET['action'] ?? 'index';
+$id = $_GET['id'] ?? null;
 
-function edit($id) {
-    $dbInstance = new BDD();
-    $db = $dbInstance->connect();
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $contenu = $_POST['contenu'] ?? '';
-        $utilisateur_id = $_POST['utilisateur_id'] ?? '';
-        $article_id = $_POST['article_id'] ?? '';
-
-        if (empty($contenu) || empty($utilisateur_id) || empty($article_id)) {
-            echo "Tous les champs doivent être remplis.";
-            exit;
-        }
-
-        $data = [
-            'contenu' => $contenu,
-            'utilisateur_id' => $utilisateur_id,
-            'article_id' => $article_id,
-        ];
-
-        if (updateCommentaire($db, $id, $data)) {
-            header("Location: index.php?controller=commentaire&action=show&id=$id");
-            exit;
-        } else {
-            echo "Erreur lors de la mise à jour du commentaire.";
-        }
-    } else {
-        $commentaire = readCommentaire($db, $id);
-        include '../Views/commentaires/edit.php';
-    }
-}
-
-function delete($id) {
-    $dbInstance = new BDD();
-    $db = $dbInstance->connect();
-    if (deleteCommentaire($db, $id)) {
-        header("Location: index.php?controller=commentaire&action=index");
-        exit;
-    } else {
-        echo "Erreur lors de la suppression du commentaire.";
-    }
-}
-
-function readCommentaires($db) {
-    $query = "SELECT * FROM Commentaire";
-    $stmt = $db->prepare($query);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+if ($id) {
+    $controller->$action($id);
+} else {
+    $controller->$action();
 }
 ?>

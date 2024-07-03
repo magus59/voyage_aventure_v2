@@ -10,13 +10,13 @@
 <body>
     <nav>
         <ul id="ul_nav">
-            <a href="../Accueil/index.php">
-                <li id="li_nav">Accueil</li>
+        <a href="./Accueil/index.php">
+        <li id="li_nav">Accueil</li>
             </a>
             <a href="./index.php">
                 <li id="li_nav">Article</li>
             </a>
-            <a href="../commentaires/index.php">
+            <a href="./commentaires/index.php">
                 <li id="li_nav">Commentaires</li>
             </a>
         </ul>
@@ -28,7 +28,7 @@
     <p>
         <a id="edit" href="index.php?controller=article&action=edit&id=<?= $article['id'] ?>">Éditer</a>
         <a id="suppr" href="index.php?controller=article&action=delete&id=<?= $article['id'] ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article?');">Supprimer</a>
-        <a id="back" href="../../../voy_et_av_v2/Views/index.php">Revenir aux articles</a>
+        <a id="back" href="../../Views/index.php">Revenir aux articles</a>
     </p>
 </body>
 

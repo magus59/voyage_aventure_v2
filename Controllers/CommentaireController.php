@@ -1,22 +1,40 @@
 <?php
-require_once __DIR__ . '/../Models/Commentaire.php';
-require_once __DIR__ . '/../Models/BDD.php';
+// require_once __DIR__ . '/../Models/Commentaire.php';
+// require_once __DIR__ . '/../Models/BDD.php';
 
-class CommentaireController {
+require_once '../../Models/BDD.php';
+require_once '../../Models/commentaire.php';
+
+$controller = new CommentaireController();
+$action = $_GET['action'] ?? 'index';
+$id = $_GET['id'] ?? null;
+
+if ($id) {
+    $controller->$action($id);
+} else {
+    $controller->$action();
+}
+
+class CommentaireController
+{
     private $commentaireModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $dbInstance = new BDD();
         $db = $dbInstance->connect();
         $this->commentaireModel = new Commentaire($db);
     }
 
-    public function index() {
+    public function index()
+    {
         $commentaires = $this->commentaireModel->getAllCommentaires();
         include '../../Views/commentaires/index.php';
+   
     }
 
-    public function create() {
+    public function create()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
                 'contenu' => $_POST['contenu'] ?? '',
@@ -36,12 +54,14 @@ class CommentaireController {
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $commentaire = $this->commentaireModel->getCommentaireById($id);
         include '../../Views/commentaires/show.php';
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = [
                 'contenu' => $_POST['contenu'] ?? '',
@@ -61,7 +81,8 @@ class CommentaireController {
         }
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         if ($this->commentaireModel->deleteCommentaire($id)) {
             header("Location: index.php?controller=commentaire&action=index");
             exit;
@@ -71,13 +92,12 @@ class CommentaireController {
     }
 }
 
-$controller = new CommentaireController();
-$action = $_GET['action'] ?? 'index';
-$id = $_GET['id'] ?? null;
+// $controller = new CommentaireController();
+// $action = $_GET['action'] ?? 'index';
+// $id = $_GET['id'] ?? null;
 
-if ($id) {
-    $controller->$action($id);
-} else {
-    $controller->$action();
-}
-?>
+// if ($id) {
+//     $controller->$action($id);
+// } else {
+//     $controller->$action();
+// }

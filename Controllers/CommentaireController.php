@@ -1,6 +1,6 @@
 <?php
-require_once '../Models/Commentaire.php';
-require_once '../Models/BDD.php';
+require_once __DIR__ . '/../Models/Commentaire.php';
+require_once __DIR__ . '/../Models/BDD.php';
 
 class CommentaireController {
     private $commentaireModel;
@@ -13,7 +13,7 @@ class CommentaireController {
 
     public function index() {
         $commentaires = $this->commentaireModel->getAllCommentaires();
-        include '../views/commentaires/index.php';
+        include '../../Views/commentaires/index.php';
     }
 
     public function create() {
@@ -32,13 +32,13 @@ class CommentaireController {
                 echo "Erreur lors de la création du commentaire.";
             }
         } else {
-            include '../views/commentaires/create.php';
+            include '../../Views/commentaires/create.php';
         }
     }
 
     public function show($id) {
         $commentaire = $this->commentaireModel->getCommentaireById($id);
-        include '../views/commentaires/show.php';
+        include '../../Views/commentaires/show.php';
     }
 
     public function edit($id) {
@@ -57,7 +57,7 @@ class CommentaireController {
             }
         } else {
             $commentaire = $this->commentaireModel->getCommentaireById($id);
-            include '../views/commentaires/edit.php';
+            include '../../Views/commentaires/edit.php';
         }
     }
 

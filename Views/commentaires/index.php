@@ -1,3 +1,8 @@
+
+<?php
+require_once '../../Controllers/CommentaireController.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +24,7 @@
     </ul>
 </nav>
 <h1>Liste des Commentaires</h1>
-<a href="index.php?controller=commentaire&action=create">Créer un nouveau commentaire</a>
+<a href="./create.php">Créer un nouveau commentaire</a>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -38,9 +43,9 @@
                 <td><?php echo htmlspecialchars($commentaire['utilisateur_id']); ?></td>
                 <td><?php echo htmlspecialchars($commentaire['article_id']); ?></td>
                 <td>
-                    <a href="index.php?controller=commentaire&action=show&id=<?php echo htmlspecialchars($commentaire['id']); ?>">Voir</a>
-                    <a href="index.php?controller=commentaire&action=edit&id=<?php echo htmlspecialchars($commentaire['id']); ?>">Modifier</a>
-                    <a href="index.php?controller=commentaire&action=delete&id=<?php echo htmlspecialchars($commentaire['id']); ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer</a>
+                    <a href="./index.php?controller=commentaire&action=show&id=<?php echo htmlspecialchars($commentaire['id']); ?>">Voir</a>
+                    <a href="./index.php?controller=commentaire&action=edit&id=<?php echo htmlspecialchars($commentaire['id']); ?>">Modifier</a>
+                    <a href="./index.php?controller=commentaire&action=delete&id=<?php echo htmlspecialchars($commentaire['id']); ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer</a>
                 </td>
             </tr>
         <?php endforeach; ?>

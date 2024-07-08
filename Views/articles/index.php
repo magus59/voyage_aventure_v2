@@ -23,7 +23,7 @@
         </ul>
     </nav>
     <h1 id="title_article">Liste des articles</h1>
-    <a id="create_article" href="index.php?controller=article&action=create">Créer un nouvel article</a>
+    <a id="create_article" href="./index.php?controller=article&action=create">Créer un nouvel article</a>
     <ul>
         <?php foreach ($articles as $article) : ?>
             <li>

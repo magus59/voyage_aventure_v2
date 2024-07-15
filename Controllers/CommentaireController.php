@@ -90,6 +90,12 @@ class CommentaireController
             echo "Erreur lors de la suppression du commentaire.";
         }
     }
+
+    public function like($id) {
+        $this->commentaireModel->likeCommentaire($id);
+        header("Location: index.php?controller=commentaire&action=index");
+        exit;
+    }
 }
 
 // $controller = new CommentaireController();
